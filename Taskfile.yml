@@ -11,6 +11,7 @@ tasks:
       - cmd: echo " > Cleaning up project output directories..."
         silent: true
       - cmd: rm -rf gophers
+      - cmd: rm -rf dist
 
   verify-install:
     desc: Verifies where go binaries are installed on machine
@@ -56,16 +57,10 @@ tasks:
       - cmd: GO111MODULE=on GOFLAGS=-mod=mod go build -o bin/gopher-greeter main.go
 
   build:
-#    deps:
-#      - clean
-#      - verify-install
-#      - install-dependencies
-#      - go-vet
-#      - go-lint
-#      - go-test
-#      - go-build
     desc: Build the app
     cmds:
+      - cmd: echo " > Building gopher-greeter"
+        silent: true
       - task: clean
       - task: verify-install
       - task: install-dependencies
