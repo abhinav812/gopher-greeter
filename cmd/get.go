@@ -2,11 +2,12 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/abhinav812/gopher-greeter/internal/asciiconvertor"
 	"io"
 	"net/http"
 	"os"
 	"path/filepath"
+
+	"github.com/abhinav812/gopher-greeter/internal/asciiconvertor"
 
 	"github.com/spf13/cobra"
 )

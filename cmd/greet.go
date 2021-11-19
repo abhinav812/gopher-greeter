@@ -2,13 +2,14 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/abhinav812/gopher-greeter/greeters"
-	"github.com/spf13/cobra"
 	"log"
 	"math/rand"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/abhinav812/gopher-greeter/greeters"
+	"github.com/spf13/cobra"
 )
 
 // greetCmd represents the greet command

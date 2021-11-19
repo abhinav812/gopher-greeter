@@ -1,9 +1,10 @@
 package asciiconvertor
 
 import (
-	"github.com/qeesung/image2ascii/convert"
 	_ "image/jpeg" // import to process jpeg images
 	_ "image/png"  // import to process png messages
+
+	"github.com/qeesung/image2ascii/convert"
 )
 
 //ConvertToAsii - converts image file to an ascii-art and returns the string representing it.
