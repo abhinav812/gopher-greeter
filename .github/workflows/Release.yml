@@ -2,11 +2,8 @@ name: gopher-greeter-release
 
 on:
   push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+    tags:
+      - '*'
 
 
 jobs:
