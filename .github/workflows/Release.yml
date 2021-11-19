@@ -2,8 +2,11 @@ name: gopher-greeter-release
 
 on:
   push:
-    tags:
-      - '*'
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 
 
 jobs:
@@ -14,6 +17,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+        with:
+          fetch-depth: '0'
+
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.36.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+          VERBOSE: true
 
       - name: Set up Go
         uses: actions/setup-go@v1
@@ -23,6 +35,7 @@ jobs:
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
         with:
+          distribution: goreleaser
           version: latest
           args: release --rm-dist
         env:
