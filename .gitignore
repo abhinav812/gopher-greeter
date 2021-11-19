@@ -1,3 +1,9 @@
+# IntelliJ and build directories
+.idea/
+out/
+bin/
+gophers/
+
 # Binaries for programs and plugins
 *.exe
 *.exe~
