@@ -1,0 +1,76 @@
+version: 3
+
+tasks:
+  default:
+    cmds:
+      - task -l
+
+  clean:
+    desc: Remove all retrieved *.png files
+    cmds:
+      - cmd: echo " > Cleaning up project output directories..."
+        silent: true
+      - cmd: rm -rf gophers
+      - cmd: rm -rf dist
+
+  verify-install:
+    desc: Verifies where go binaries are installed on machine
+    cmds:
+      - cmd: echo "  >  Verifying GO installation..."
+        silent: true
+      - cmd: go version
+
+  install-dependencies:
+    desc: Installs go libraries used in build
+    cmds:
+      - cmd: echo " >  Installing build dependencies..."
+        silent: true
+      - cmd: go get -u golang.org/x/lint/golint
+
+  go-vet:
+    desc: Run go vet on the *.go files
+    cmds:
+      - cmd: echo "  >  Running GO VET..."
+        silent: true
+      - cmd: go vet ./...
+
+  go-lint:
+    desc: Run go linter on the *.go files
+    cmds:
+      - cmd: echo "  >  Running GO LINT..."
+        silent: true
+      - cmd: golint ./...
+
+  go-test:
+    desc: Run the tests of the project
+    cmds:
+      - cmd: echo " > Running tests..."
+        silent: true
+      - cmd: go test -v ./...
+
+
+  go-build:
+    desc: Build the project and put the output binary in bin/
+    cmds:
+      - cmd: echo "  >  Running GO BUILD..."
+        silent: true
+      - cmd: GO111MODULE=on GOFLAGS=-mod=mod go build -o bin/gopher-greeter main.go
+
+  build:
+    desc: Build the app
+    cmds:
+      - cmd: echo " > Building gopher-greeter"
+        silent: true
+      - task: clean
+      - task: verify-install
+      - task: install-dependencies
+      - task: go-vet
+      - task: go-lint
+      - task: go-test
+      - task: go-build
+
+  run:
+    desc: Run the app
+    cmds:
+      - GOFLAGS=-mod=mod go run main.go {{.CLI_ARGS}}
+
