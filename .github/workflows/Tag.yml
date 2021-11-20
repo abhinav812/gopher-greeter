@@ -3,9 +3,6 @@ name: Bump version
 on:
   repository_dispatch:
     types: [git-tag-workflow]
-#  push:
-#    branches:
-#      - master
 
 
 jobs:
@@ -25,7 +22,6 @@ jobs:
           VERBOSE: true
 
       - name: Trigger Release workflow
-        #if:  ${{ github.ref == 'refs/heads/master' && github.event_name == 'push' && success() }}
         if:  ${{ github.ref == 'refs/heads/master' && success() }}
         uses: peter-evans/repository-dispatch@v1
         with:
