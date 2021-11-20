@@ -17,12 +17,12 @@ jobs:
         with:
           fetch-depth: '0'
 
-      - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@1.36.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: true
-          VERBOSE: true
+#      - name: Bump version and push tag
+#        uses: anothrNick/github-tag-action@1.36.0
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          WITH_V: true
+#          VERBOSE: true
 
       - name: Set up Go
         uses: actions/setup-go@v1
