@@ -25,7 +25,8 @@ jobs:
           VERBOSE: true
 
       - name: Trigger Release workflow
-        if:  ${{ github.ref == 'refs/heads/master' && github.event_name == 'push' && success() }}
+        #if:  ${{ github.ref == 'refs/heads/master' && github.event_name == 'push' && success() }}
+        if:  ${{ github.ref == 'refs/heads/master' && success() }}
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
