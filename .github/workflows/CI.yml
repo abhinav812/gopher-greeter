@@ -29,3 +29,12 @@ jobs:
 
       - name: Build using Taskfile
         run: task build
+
+      - name: Trigger Git-Tag workflow
+        #if: ${{ (github.event_name != 'workflow_dispatch' && success()) || (github.event_name == 'workflow_dispatch' && github.event.inputs.trigger_next && success()) }}
+        if:  ${{ github.ref == 'refs/heads/master' && github.event_name == 'push' && success() }}
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          repository: ${{ github.repository }}
+          event-type: git-tag-workflow

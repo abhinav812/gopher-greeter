@@ -1,11 +1,13 @@
 name: gopher-greeter-release
 
 on:
-  push:
-    tags:
-      - '*'
-    branches:
-      - master
+  repository_dispatch:
+    types: [git-release-workflow]
+#  push:
+#    tags:
+#      - '*'
+#    branches:
+#      - master
 
 
 jobs:
